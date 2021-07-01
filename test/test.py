@@ -15,6 +15,8 @@ class DeepDirCmpUnittest(unittest.TestCase):
                 "directory_in_a",
                 "file_only_in_a.md",
                 "common_directory/deep_file_in_a_common_directory.md",
+                "common_directory/common_directory_in_common_directory/directory_only_in_a",
+                "common_directory/common_directory_in_common_directory/file_only_in_a.md",
             }
         )
 

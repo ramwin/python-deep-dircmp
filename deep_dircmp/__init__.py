@@ -13,13 +13,15 @@ class DeepDirCmp(filecmp.dircmp):
         xx = filecmp.cmpfiles(self.left, self.right, self.common_files, shallow=False)
         self.same_files, self.diff_files, self.funny_files = xx
 
-    # TODO: Remove once this is merged, released, and we move to it: https://github.com/python/cpython/pull/5088
-    def phase4(self):
-        self.subdirs = {}
-        for x in self.common_dirs:
-            a_x = os.path.join(self.left, x)
-            b_x = os.path.join(self.right, x)
-            self.subdirs[x] = type(self)(a_x, b_x, self.ignore, self.hide)
+    # TODO: Remove once this is merged, released
+    #       and we move to it: https://github.com/python/cpython/pull/5088
+    # merged https://github.com/python/cpython/pull/23424/files
+    # def phase4(self):
+    #     self.subdirs = {}
+    #     for x in self.common_dirs:
+    #         a_x = os.path.join(self.left, x)
+    #         b_x = os.path.join(self.right, x)
+    #         self.subdirs[x] = type(self)(a_x, b_x, self.ignore, self.hide)
 
     def get_left_only_recursive(self):
         left_only = list(self.left_only)
@@ -65,6 +67,6 @@ class DeepDirCmp(filecmp.dircmp):
 
     # For our subclassed methods to be really used.
     methodmap = dict(filecmp.dircmp.methodmap,
-        subdirs=phase4,
+        # subdirs=phase4,
         same_files=phase3, diff_files=phase3, funny_files=phase3,
     )
